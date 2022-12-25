@@ -1,43 +1,69 @@
 function getComputerChoice(){
     const choices = ["rock", "paper", "scissor"]
-    const value = Math.floor((Math.random()*3)+1)
-    return choices[value-1]
+    const index = Math.floor((Math.random()*3))
+    return (choices[index])
 }
 
+let playerScore = 0
+let computerScore = 0
 
 function playRound(playerSelection){
     const computerChoice = getComputerChoice()
     if (playerSelection == "rock"){
         if (computerChoice == playerSelection){
-            return `You: ${playerSelection} Computer ${computerChoice} - It's a Tie!`
+            console.log(`You: ${playerSelection} Computer ${computerChoice} - It's a Tie!`)
+            console.log("Player Score is "  + playerScore)
+            console.log("Computer Score is " + computerScore)
         }
         else if (computerChoice == "scissor") {
-            return `You: ${playerSelection} Computer ${computerChoice} - You win!`
+            console.log(`You: ${playerSelection} Computer ${computerChoice} - You win!`)
+            playerScore += 1
+            console.log("Player Score is "  + playerScore)
+            console.log("Computer Score is " + computerScore)
         }
         else {
-            return `You: ${playerSelection} Computer ${computerChoice} - You lose.`
+            console.log(`You: ${playerSelection} Computer ${computerChoice} - You lose.`)
+            computerScore += 1
+            console.log("Player Score is "  + playerScore)
+            console.log("Computer Score is " + computerScore)
         }
     }
     else if (playerSelection == "paper"){
         if (computerChoice == playerSelection){
-            return `You: ${playerSelection} Computer ${computerChoice} - It's a Tie!`
+            console.log(`You: ${playerSelection} Computer ${computerChoice} - It's a Tie!`)
+            console.log("Player Score is "  + playerScore)
+            console.log("Computer Score is " + computerScore)
         }
         else if (computerChoice == "rock") {
-            return `You: ${playerSelection} Computer ${computerChoice} - You win!`
+            console.log(`You: ${playerSelection} Computer ${computerChoice} - You win!`)
+            playerScore += 1
+            console.log("Player Score is "  + playerScore)
+            console.log("Computer Score is " + computerScore)
         }
         else {
-            return `You: ${playerSelection} Computer ${computerChoice} - You lose.`
+            console.log(`You: ${playerSelection} Computer ${computerChoice} - You lose.`)
+            computerScore += 1
+            console.log("Player Score is "  + playerScore)
+            console.log("Computer Score is " + computerScore)
         }
     }
     else if (playerSelection == "scissor"){
         if (computerChoice == playerSelection){
-            return `You: ${playerSelection} Computer ${computerChoice} - It's a Tie!`
+            console.log(`You: ${playerSelection} Computer ${computerChoice} - It's a Tie!`)
+            console.log("Player Score is "  + playerScore)
+            console.log("Computer Score is " + computerScore)
         }
         else if (computerChoice == "paper") {
-            return `You: ${playerSelection} Computer ${computerChoice} - You win!`
+            console.log(`You: ${playerSelection} Computer ${computerChoice} - You win!`)
+            playerScore += 1
+            console.log("Player Score is "  + playerScore)
+            console.log("Computer Score is " + computerScore)
         }
         else {
-            return `You: ${playerSelection} Computer ${computerChoice} - You lose.`
+            console.log(`You: ${playerSelection} Computer ${computerChoice} - You lose.`)
+            computerScore += 1
+            console.log("Player Score is "  + playerScore)
+            console.log("Computer Score is " + computerScore)
         }
     }
     else {
@@ -45,12 +71,31 @@ function playRound(playerSelection){
     }
 }
 
-function game () {
-    for (let i=0; i<5; ++i){
-        const playerSelection = prompt().toLowerCase()
-        console.log(playRound(playerSelection))
-    }
-}
+// if (playerScore || computerScore >5 ) {
+//     console.log('GAME OVER')
+//     console.log("Player Score is "  + playerScore)
+//     console.log("Computer Score is " + computerScore)
+// }
 
-game()
+const choices = document.querySelector('.choices')
 
+const rock = document.createElement('button')
+rock.className = "rockBtn"
+rock.innerText = "ROCK"
+rock.addEventListener('click', () => playRound("rock"))
+choices.appendChild(rock)
+
+const paper = document.createElement('button')
+paper.className = "paperBtn"
+paper.innerText = "PAPER"
+paper.addEventListener('click', () => playRound("paper"))
+choices.appendChild(paper)
+
+const scissor = document.createElement('button')
+scissor.className = "scissorBtn"
+scissor.innerText = "SCISSOR"
+scissor.addEventListener('click', () => playRound("scissor"))
+choices.appendChild(scissor)
+
+console.log("Player Score is "  + playerScore)
+console.log("Computer Score is " + computerScore)
