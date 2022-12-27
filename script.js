@@ -1,92 +1,116 @@
+// Initialize scores
 let playerScore = 0
 let computerScore = 0
 
+// div for all buttons
+const choices = document.querySelector('.choices')
+
+// Show score
+const score = document.querySelector('.score')
+
+// Show descriptive message
+const message = document.querySelector('.message')
+
+// Show turns
+const turn = document.querySelector('.turn')
+turn.textContent = 'press any button to start'
+
+// Create one event listener for any button, fires game round with button class
+const playBtn = document.querySelectorAll('button')
+playBtn.forEach(item => item.addEventListener('click', (e) => {
+    playRound(e.target.className)
+}))
+
+// Function to update scores after round
+function updateScore() {
+    score.textContent = 
+    `player : ${playerScore} computer : ${computerScore}`
+}
+updateScore()
+
+// Funtion to create random computer choice
 function getComputerChoice(){
     const choices = ["rock", "paper", "scissor"]
     const index = Math.floor((Math.random()*3))
     return (choices[index])
 }
 
-function logScore() {
-    console.log("Player Score is "  + playerScore)
-    console.log("Computer Score is " + computerScore)
+// What happens when player wins
+function playerWins() {
+    playerScore += 1
+    message.textContent = "Player wins!"
 }
+
+// What happens when computer wins
+function computerWins() {
+    computerScore += 1
+    message.textContent = "Computer wins."
+}
+
+// What happens on a tie
+function tie() {
+    message.textContent = "It's a tie!"
+}
+
+function gameOver() {
+    updateScore()
+    if (playerScore > computerScore) message.textContent = `Woohoo! You win the game!`
+    else message.textContent = `Booo! Computer wins the game.`
+    setTimeout(() => {
+        if (alert("Restart game?")){}
+        else window.location.reload()
+    }, 100)
+}
+
+// Game logic
 function playRound(playerSelection){
     const computerChoice = getComputerChoice()
+    turn.textContent = `player picks ${playerSelection}, computer picks ${computerChoice}`
+
     if (playerSelection == "rock"){
         if (computerChoice == playerSelection){
-            console.log(`You: ${playerSelection} Computer ${computerChoice} - It's a Tie!`)
-            logScore()
+            tie()
+            updateScore()
         }
         else if (computerChoice == "scissor") {
-            console.log(`You: ${playerSelection} Computer ${computerChoice} - You win!`)
-            playerScore += 1
-            logScore()
+            playerWins()
+            updateScore()
         }
         else {
-            console.log(`You: ${playerSelection} Computer ${computerChoice} - You lose.`)
-            computerScore += 1
-            logScore()
+            computerWins()
+            updateScore()
         }
     }
     else if (playerSelection == "paper"){
         if (computerChoice == playerSelection){
-            console.log(`You: ${playerSelection} Computer ${computerChoice} - It's a Tie!`)
-            logScore()
+            tie()
+            updateScore()
         }
         else if (computerChoice == "rock") {
-            console.log(`You: ${playerSelection} Computer ${computerChoice} - You win!`)
-            playerScore += 1
-            logScore()
+            playerWins()
+            updateScore()
         }
         else {
-            console.log(`You: ${playerSelection} Computer ${computerChoice} - You lose.`)
-            computerScore += 1
-            logScore()
+            computerWins()
+            updateScore()
         }
     }
     else if (playerSelection == "scissor"){
         if (computerChoice == playerSelection){
-            console.log(`You: ${playerSelection} Computer ${computerChoice} - It's a Tie!`)
-            logScore()
+            tie()
+            updateScore()
         }
         else if (computerChoice == "paper") {
-            console.log(`You: ${playerSelection} Computer ${computerChoice} - You win!`)
-            playerScore += 1
-            logScore()
+            playerWins()
+            updateScore()
         }
         else {
-            console.log(`You: ${playerSelection} Computer ${computerChoice} - You lose.`)
-            computerScore += 1
-            logScore()
+            computerWins()
+            updateScore()
         }
     }
+    // Reset after either player wins 5 games
     if (!(playerScore < 5 && computerScore < 5)) {
-        if (alert('GAME OVER')){}
-        else window.location.reload()
+        gameOver()
     }
 }
-
-// Grab div to hold all buttons
-const choices = document.querySelector('.choices')
-
-// Create Rock element
-const rock = document.createElement('button')
-rock.className = "rockBtn"
-rock.innerText = "ROCK"
-rock.addEventListener('click', () => playRound("rock"))
-choices.appendChild(rock)
-
-// Create Paper element
-const paper = document.createElement('button')
-paper.className = "paperBtn"
-paper.innerText = "PAPER"
-paper.addEventListener('click', () => playRound("paper"))
-choices.appendChild(paper)
-
-// Create Scissor element
-const scissor = document.createElement('button')
-scissor.className = "scissorBtn"
-scissor.innerText = "SCISSOR"
-scissor.addEventListener('click', () => playRound("scissor"))
-choices.appendChild(scissor)
