@@ -6,28 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissor</title>
     <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
 </head>
 <body>
-    <div class="images">
-        <div class="image">
-            <img src="./rock.svg" alt="rock">
-        </div>
-        <div class="image">
-            <img src="./paper.svg" alt="paper">
-        </div>
-        <div class="image">
-            <img src="./scissor.svg" alt="scissor">
-        </div>
-    </div>
+    <div class="header">Let's play Rock, Paper, Scissor!</div>
     <div class="choices">
-        <button class="rock">rock</button>
-        <button class="paper">paper</button>
-        <button class="scissor">scissor</button>
+        <div class="choice">
+            <img src="./rock.svg" alt="rock">
+            <button class="Rock">Rock</button>
+        </div>
+        
+        <div class="choice">
+            <img src="./paper.svg" alt="paper">
+            <button class="Paper">Paper</button>
+        </div>
+        
+        <div class="choice">
+            <img src="./scissor.svg" alt="scissor">
+            <button class="Scissor">Scissor</button>
+        </div>
     </div>
-    <div class="turn"></div>
-    <div class="message">all the best!</div>
-    <div class="score"></div>
-
-<script src="./script.js" defer></script>
+    <div class="text">
+        <div class="turn">Press Any Button</span> to Start</div>
+        <div class="message">First to 5 wins the game!</div>
+        <div class="score"></div>
+    </div>
+    
 </body>
 </html>

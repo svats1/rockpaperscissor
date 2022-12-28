@@ -2,35 +2,30 @@
 let playerScore = 0
 let computerScore = 0
 
-// div for all buttons
-const choices = document.querySelector('.choices')
-
-// Show score
-const score = document.querySelector('.score')
-
 // Show descriptive message
 const message = document.querySelector('.message')
 
 // Show turns
 const turn = document.querySelector('.turn')
-turn.textContent = 'press any button to start'
 
-// Create one event listener for any button, fires game round with button class
+// Create common event listener for all buttons
 const playBtn = document.querySelectorAll('button')
 playBtn.forEach(item => item.addEventListener('click', (e) => {
     playRound(e.target.className)
 }))
 
-// Function to update scores after round
+// Update score
 function updateScore() {
-    score.textContent = 
-    `player : ${playerScore} computer : ${computerScore}`
+    const score = document.querySelector('.score')
+    score.textContent = `Player : ${playerScore} Computer : ${computerScore}`
 }
+// Initialize scores
 updateScore()
 
 // Funtion to create random computer choice
 function getComputerChoice(){
-    const choices = ["rock", "paper", "scissor"]
+    let choices = []
+    playBtn.forEach(item => choices.push(item.className))
     const index = Math.floor((Math.random()*3))
     return (choices[index])
 }
@@ -52,6 +47,7 @@ function tie() {
     message.textContent = "It's a tie!"
 }
 
+// What happens when someone gets to 5 wins
 function gameOver() {
     updateScore()
     if (playerScore > computerScore) message.textContent = `Woohoo! You win the game!`
@@ -65,14 +61,14 @@ function gameOver() {
 // Game logic
 function playRound(playerSelection){
     const computerChoice = getComputerChoice()
-    turn.textContent = `player picks ${playerSelection}, computer picks ${computerChoice}`
+    turn.textContent = `Player chose ${playerSelection}, Computer chose ${computerChoice}`
 
-    if (playerSelection == "rock"){
+    if (playerSelection == "Rock"){
         if (computerChoice == playerSelection){
             tie()
             updateScore()
         }
-        else if (computerChoice == "scissor") {
+        else if (computerChoice == "Scissor") {
             playerWins()
             updateScore()
         }
@@ -81,12 +77,12 @@ function playRound(playerSelection){
             updateScore()
         }
     }
-    else if (playerSelection == "paper"){
+    else if (playerSelection == "Paper"){
         if (computerChoice == playerSelection){
             tie()
             updateScore()
         }
-        else if (computerChoice == "rock") {
+        else if (computerChoice == "Rock") {
             playerWins()
             updateScore()
         }
@@ -95,12 +91,12 @@ function playRound(playerSelection){
             updateScore()
         }
     }
-    else if (playerSelection == "scissor"){
+    else if (playerSelection == "Scissor"){
         if (computerChoice == playerSelection){
             tie()
             updateScore()
         }
-        else if (computerChoice == "paper") {
+        else if (computerChoice == "Paper") {
             playerWins()
             updateScore()
         }
