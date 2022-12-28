@@ -21,7 +21,7 @@ button {
     background-color: whitesmoke;
     border-radius: 8px;
     font-size: 20px;
-    border: 4px rgb(104, 192, 82) solid;
+    border: 4px rgb(137, 137, 137) solid;
 
 }
 button:active {
